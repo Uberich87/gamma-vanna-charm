@@ -1,0 +1,25 @@
+<Project>
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'GammaVannaCharm.Core'">
+    <GammaVannaCharmBuildScope Condition="'$(GITHUB_RUN_ID)' != ''">$(GITHUB_RUN_ID)</GammaVannaCharmBuildScope>
+    <GammaVannaCharmBuildScope Condition="'$(GammaVannaCharmBuildScope)' == '' and '$(BUILD_BUILDID)' != ''">$(BUILD_BUILDID)</GammaVannaCharmBuildScope>
+    <GammaVannaCharmBuildScope Condition="'$(GammaVannaCharmBuildScope)' == ''">local</GammaVannaCharmBuildScope>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'GammaVannaCharm.Core' and '$(OS)' == 'Windows_NT'">
+    <GammaVannaCharmTempRoot Condition="'$(TMP)' != ''">$(TMP)\GammaVannaCharm</GammaVannaCharmTempRoot>
+    <GammaVannaCharmTempRoot Condition="'$(GammaVannaCharmTempRoot)' == '' and '$(TEMP)' != ''">$(TEMP)\GammaVannaCharm</GammaVannaCharmTempRoot>
+    <GammaVannaCharmTempRoot Condition="'$(GammaVannaCharmTempRoot)' == ''">C:\_build_temp\GammaVannaCharm</GammaVannaCharmTempRoot>
+    <BaseOutputPath>$(GammaVannaCharmTempRoot)\$(GammaVannaCharmBuildScope)\$(MSBuildProjectName)\$(Configuration)\$(Platform)\bin\</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(GammaVannaCharmTempRoot)\$(GammaVannaCharmBuildScope)\$(MSBuildProjectName)\$(Configuration)\$(Platform)\obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'GammaVannaCharm.Core' and '$(OS)' != 'Windows_NT'">
+    <GammaVannaCharmTempRoot>/tmp/gamma-vanna-charm</GammaVannaCharmTempRoot>
+    <BaseOutputPath>$(GammaVannaCharmTempRoot)/$(GammaVannaCharmBuildScope)/$(MSBuildProjectName)/$(Configuration)/$(Platform)/bin/</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(GammaVannaCharmTempRoot)/$(GammaVannaCharmBuildScope)/$(MSBuildProjectName)/$(Configuration)/$(Platform)/obj/</BaseIntermediateOutputPath>
+  </PropertyGroup>
+
+  <Target Name="CreateGammaVannaCharmOutputDirectories" BeforeTargets="PrepareForBuild" Condition="'$(MSBuildProjectName)' == 'GammaVannaCharm.Core'">
+    <MakeDir Directories="$(BaseOutputPath);$(BaseIntermediateOutputPath)" />
+  </Target>
+</Project>
