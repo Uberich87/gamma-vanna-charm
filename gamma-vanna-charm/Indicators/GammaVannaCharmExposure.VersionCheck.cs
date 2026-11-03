@@ -13,8 +13,8 @@ public partial class GammaVannaCharmExposure
 {
     // Keep this in sync with /version.txt for each release.
     private const string CurrentGammaVannaCharmVersion = "0.1.0";
-    private const string VersionCheckUrl = "https://raw.githubusercontent.com/OrderRejected/gamma-vanna-charm/main/version.txt";
-    private const string VersionReleaseUrl = "https://github.com/OrderRejected/gamma-vanna-charm/releases";
+    private const string VersionCheckUrl = "https://raw.githubusercontent.com/Uberich87/gamma-vanna-charm/main/version.txt";
+    private const string VersionReleaseUrl = "https://github.com/Uberich87/gamma-vanna-charm/releases";
     private readonly object _versionCheckSyncRoot = new object();
     private CancellationTokenSource _versionCheckCancellationSource;
     private bool _isVersionUpdateAvailable;
